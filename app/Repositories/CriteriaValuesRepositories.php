@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Http\Requests\CriteriaValuesRequest;
-use App\Interface\CriteriaInterfaces;
 use App\Interface\CriteriaValuesInterfaces;
 use App\Models\CriteriaValues;
 use App\Traits\HttpResponseTraits;

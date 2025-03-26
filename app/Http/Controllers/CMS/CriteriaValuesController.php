@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\CMS;
 
 use App\Http\Requests\CriteriaValuesRequest;
-use App\Models\CriteriaValues;
 use App\Repositories\CriteriaValuesRepositories;
-use Illuminate\Http\Request;
 
 class CriteriaValuesController
 {

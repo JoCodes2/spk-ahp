@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CMS\CriteriaController;
+use App\Http\Controllers\CMS\CriteriaValuesController;
+use App\Http\Requests\CriteriaValuesRequest;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,7 +18,7 @@ Route::prefix('v1')->group(function () {
     });
 
     // Routes criteria-values
-    Route::prefix('criteria-values')->controller(CriteriaController::class)->group(function () {
+    Route::prefix('criteria-values')->controller(CriteriaValuesController::class)->group(function () {
         Route::get('/', 'getAllData');
         Route::post('/create', 'createData');
         Route::get('/get/{id}', 'getDataById');
