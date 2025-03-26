@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('Admin.dashboard');
 });
+Route::get('/criteria', function () {
+    return view('Admin.criteria');
+});
 
 
 // route api
