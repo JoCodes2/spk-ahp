@@ -10,7 +10,7 @@ class CriteriaValues extends Model
 {
     use HasFactory, HasUuids;
     protected $table = 'criteria_values';
-    protected $fillable = ['id', 'criteria_id', 'wight', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'criteria_id', 'weight', 'created_at', 'updated_at'];
     public function criteria()
     {
         return $this->belongsTo(Criteria::class);

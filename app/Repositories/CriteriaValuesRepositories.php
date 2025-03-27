@@ -26,14 +26,15 @@ class CriteriaValuesRepositories implements CriteriaValuesInterfaces
     public function createData(CriteriaValuesRequest $request)
     {
         try {
-            $validatedData = $request->only(['criteria_id', 'weight']);
-            $data = $this->criteriaValModel->create($validatedData);
+            $data = new $this->criteriaValModel;
+            $data->criteria_id = $request->input('criteria_id');
+            $data->weight = $request->input('weight');
+            $data->save();
             return $this->success($data);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), 400, $th, class_basename($this), __FUNCTION__);
         }
     }
-
     public function getDataById($id)
     {
         $data = $this->criteriaValModel::with('criteria')->find($id);
