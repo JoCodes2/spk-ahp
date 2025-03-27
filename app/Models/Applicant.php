@@ -11,7 +11,7 @@ class Applicant extends Model
     use HasFactory, HasUuids;
     protected $table = 'applicants';
     protected $fillable = ['id', 'position_id', 'name', 'code', 'created_at', 'updated_at'];
-    public function criteria()
+    public function position()
     {
         return $this->belongsTo(Position::class);
     }

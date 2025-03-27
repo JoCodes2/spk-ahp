@@ -2,13 +2,13 @@
 
 namespace App\Interface;
 
-use App\Http\Requests\CriteriaValuesRequest;
+use App\Http\Requests\PositionRequest;
 
-interface CriteriaValuesInterfaces
+interface PositionInterfaces
 {
     public function getAllData();
-    public function createData(CriteriaValuesRequest $request);
+    public function createData(PositionRequest $request);
     public function getDataById($id);
-    public function updateData(CriteriaValuesRequest $request,  $id);
+    public function updateData(PositionRequest $request,  $id);
     public function deleteData($id);
 }

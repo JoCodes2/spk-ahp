@@ -24,8 +24,17 @@ class PositionRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'name' => 'required',
+        ];
+        return $rules;
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'nama Posisi wajib diisi',
+
         ];
     }
     protected function failedValidation(Validator $validator)
