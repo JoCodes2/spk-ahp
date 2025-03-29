@@ -98,6 +98,8 @@
                 method: "GET",
                 dataType: "json",
                 success: function(response) {
+                    console.log(response);
+
                     tbodyBobot.empty();
                     if (response.code === 200) {
                         let no = 1;
@@ -145,7 +147,7 @@
                                                     <td>${item.code}</td>
                                                     <td>
                                                         <input type="hidden" class="criteria-id" value="${item.id}">
-                                                        <input type="number" name="weight" id="weight" class="form-control weight" required>
+                                                        <input type="number" name="weight" id="weight" class="form-control weight" min="0.1" max="9" step="0.1">
                                                     </td>
                                                     <td>
                                                         <button type="button" class="btn btn-outline-success btn-save"><i class="fas fa-check-square"></i></button>
@@ -223,14 +225,16 @@
                     weight: {
                         required: true,
                         number: true,
-                        min: 0.01
+                        min: 0.1,
+                        max: 9,
                     }
                 },
                 messages: {
                     weight: {
                         required: "Bobot tidak boleh kosong!",
                         number: "Masukkan angka yang valid!",
-                        min: "Bobot harus lebih dari 0!"
+                        min: "Bobot harus lebih dari 0.1!",
+                        max: "Maksimal bobot 9!"
                     }
                 },
                 highlight: function (element) {
@@ -281,7 +285,7 @@
         });
 
 
-       $(document).on("click", ".btn-delete", function (e) {
+        $(document).on("click", ".btn-delete", function (e) {
             e.preventDefault();
 
             let id = $(this).data("id");

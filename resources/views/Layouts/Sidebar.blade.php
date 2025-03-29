@@ -28,16 +28,22 @@
                         <div data-i18n="Analytics">Dashboard</div>
                     </a>
                 </li>
+                <li class="menu-item {{ request()->is('criteria') ? 'active' : '' }}">
+                    <a href="/criteria" class="menu-link">
+                        <i class="menu-icon fas fa-list"></i>
+                        <div data-i18n="Analytics">Kriteria</div>
+                    </a>
+                </li>
                 <li class="menu-item {{ request()->is('kandidat') ? 'active' : '' }}">
                     <a href="/kandidat" class="menu-link">
                         <i class="menu-icon fa-solid fa-house"></i>
                         <div data-i18n="Analytics">Data Kandidat</div>
                     </a>
                 </li>
-                <li class="menu-item {{ request()->is('criteria') ? 'active' : '' }}">
-                    <a href="/criteria" class="menu-link">
-                        <i class="menu-icon fas fa-list"></i>
-                        <div data-i18n="Analytics">Kriteria</div>
+                <li class="menu-item {{ request()->is('applicant-scores') ? 'active' : '' }}">
+                    <a href="/applicant-scores" class="menu-link">
+                        <i class="menu-icon fa-solid fa-house"></i>
+                        <div data-i18n="Analytics">Nilai Kandidat</div>
                     </a>
                 </li>
 

@@ -176,6 +176,8 @@
                     method: "GET",
                     dataType: "json",
                     success: function(response) {
+                        console.log(response);
+
                         let positionBody = $('#candidateBody');
                         positionBody.empty(); // Kosongkan tabel sebelum menambah data baru
 

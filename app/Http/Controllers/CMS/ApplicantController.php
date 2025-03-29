@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\CMS;
 
 use App\Http\Requests\ApplicantRequest;
-use App\Repositories\applicantRepositories;
+use App\Repositories\ApplicantRepositories;
 use Illuminate\Http\Request;
 
 class ApplicantController
 {
     protected $ApplicantRepo;
-    public function __construct(applicantRepositories $ApplicantRepo)
+    public function __construct(ApplicantRepositories $ApplicantRepo)
     {
         $this->ApplicantRepo = $ApplicantRepo;
     }

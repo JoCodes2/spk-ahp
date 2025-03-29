@@ -26,7 +26,7 @@ class ApplicantRequest extends FormRequest
     {
         $rules = [
             'name' => 'required',
-            'code' => 'required|numeric',
+            'code' => 'required',
             'position_id' => 'required',
         ];
         return $rules;
@@ -38,8 +38,6 @@ class ApplicantRequest extends FormRequest
             'name.required' => 'nama kandidat wajib diisi',
 
             'code.required' => 'kode kandidat wajib diisi',
-            'code.numeric' => 'kode harus berupa angka',
-
             'position_id.required' => 'posisi anggota harus diisi',
 
 

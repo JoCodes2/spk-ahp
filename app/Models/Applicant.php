@@ -15,4 +15,8 @@ class Applicant extends Model
     {
         return $this->belongsTo(Position::class);
     }
+    public function scores()
+    {
+        return $this->hasMany(ApplicantScores::class, 'applicant_id');
+    }
 }

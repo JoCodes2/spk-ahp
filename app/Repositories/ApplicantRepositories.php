@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
-class applicantRepositories implements ApplicantInterfaces
+class ApplicantRepositories implements ApplicantInterfaces
 {
     use HttpResponseTraits;
     protected $ApplicantModel;

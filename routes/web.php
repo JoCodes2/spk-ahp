@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CMS\ApplicantController;
+use App\Http\Controllers\CMS\ApplicantScoresController;
 use App\Http\Controllers\CMS\CriteriaController;
 use App\Http\Controllers\CMS\CriteriaValuesController;
 use App\Http\Controllers\CMS\PositionController;
@@ -16,7 +17,9 @@ Route::get('/criteria', function () {
 Route::get('/kandidat', function () {
     return view('Admin.kandidat');
 });
-
+Route::get('/applicant-scores', function () {
+    return view('Admin.applicantSocres');
+});
 
 // route api
 Route::prefix('v1')->group(function () {
@@ -49,5 +52,11 @@ Route::prefix('v1')->group(function () {
         Route::get('/get/{id}', 'getDataById');
         Route::post('/update/{id}', 'updateData');
         Route::delete('/delete/{id}', 'deleteData');
+    });
+    // route applicant-scores
+    Route::prefix('applicants-scores')->controller(ApplicantScoresController::class)->group(function () {
+        Route::get('/', 'getAllData');
+        Route::post('/create', 'createData');
+        Route::delete('/delete', 'deleteAll');
     });
 });
