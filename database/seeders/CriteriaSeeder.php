@@ -13,25 +13,23 @@ class CriteriaSeeder extends Seeder
      */
     public function run()
     {
-        // Pastikan data sudah berurutan di array
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        // Hapus semua data di tabel criteria
+        DB::table('criteria')->truncate();
+
+        // Data dengan ID UUID acak
         $criteria = [
-            ['code' => 'C1', 'name' => 'Kemampuan Musik'],
-            ['code' => 'C2', 'name' => 'Ketahanan Fisik'],
-            ['code' => 'C3', 'name' => 'Pengalaman'],
-            ['code' => 'C4', 'name' => 'Koordinasi Tim'],
+            ['id' => 'a1b2c3d4-e5f6-7890-abcd-ef1234567890', 'code' => 'C1', 'name' => 'Kemampuan Musik'],
+            ['id' => 'b2c3d4e5-f678-9012-abcd-ef2345678901', 'code' => 'C2', 'name' => 'Ketahanan Fisik'],
+            ['id' => 'c3d4e5f6-7890-1234-abcd-ef3456789012', 'code' => 'C3', 'name' => 'Pengalaman'],
+            ['id' => 'd4e5f678-9012-3456-abcd-ef4567890123', 'code' => 'C4', 'name' => 'Koordinasi Tim'],
         ];
 
-        // Hapus semua data terlebih dahulu agar tidak ada duplikasi
-        DB::table('criteria');
+        // Insert data langsung ke tabel
+        DB::table('criteria')->insert($criteria);
 
-        foreach ($criteria as $criterion) {
-            DB::table('criteria')->insert([
-                'id' => Str::uuid(),
-                'code' => $criterion['code'],
-                'name' => $criterion['name'],
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
+        // Aktifkan kembali foreign key checks
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

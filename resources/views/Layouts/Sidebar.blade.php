@@ -36,13 +36,13 @@
                 </li>
                 <li class="menu-item {{ request()->is('kandidat') ? 'active' : '' }}">
                     <a href="/kandidat" class="menu-link">
-                        <i class="menu-icon fa-solid fa-house"></i>
+                        <i class="menu-icon fas fa-users"></i>
                         <div data-i18n="Analytics">Data Kandidat</div>
                     </a>
                 </li>
                 <li class="menu-item {{ request()->is('applicant-scores') ? 'active' : '' }}">
                     <a href="/applicant-scores" class="menu-link">
-                        <i class="menu-icon fa-solid fa-house"></i>
+                        <i class="menu-icon fas fa-percentage"></i>
                         <div data-i18n="Analytics">Nilai Kandidat</div>
                     </a>
                 </li>

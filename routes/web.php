@@ -5,6 +5,7 @@ use App\Http\Controllers\CMS\ApplicantScoresController;
 use App\Http\Controllers\CMS\CriteriaController;
 use App\Http\Controllers\CMS\CriteriaValuesController;
 use App\Http\Controllers\CMS\PositionController;
+use App\Http\Controllers\CMS\ResultAhpContrroller;
 use App\Http\Requests\CriteriaValuesRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +56,12 @@ Route::prefix('v1')->group(function () {
     });
     // route applicant-scores
     Route::prefix('applicants-scores')->controller(ApplicantScoresController::class)->group(function () {
+        Route::get('/', 'getAllData');
+        Route::post('/create', 'createData');
+        Route::delete('/delete', 'deleteAll');
+    });
+    // route result ahp
+    Route::prefix('ahp')->controller(ResultAhpContrroller::class)->group(function () {
         Route::get('/', 'getAllData');
         Route::post('/create', 'createData');
         Route::delete('/delete', 'deleteAll');

@@ -11,4 +11,8 @@ class Criteria extends Model
     use HasFactory, HasUuids;
     protected $table = 'criteria';
     protected $fillable = ['id', 'code', 'name', 'created_at', 'updated_at'];
+    public function criteriaValues()
+    {
+        return $this->hasMany(CriteriaValues::class);
+    }
 }
