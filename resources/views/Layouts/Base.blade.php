@@ -16,13 +16,13 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Sistem Pengajuan Bantuan</title>
+    <title>AHP Marching Band</title>
 
     <meta name="description" content="" />
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" href="{{ asset('assets/assets/ahp.png') }}" />
 
     @include('Layouts.Styles')
   </head>

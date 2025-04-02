@@ -23,15 +23,151 @@
 
                 <div class="mt-3">
                     <button id="saveData" class="btn btn-outline-success"><i class="fa fa-save"></i> Simpan Data</button>
+                    <button id="sendData" class="btn btn-outline-primary"><i class="fa fa-save"></i> Hitung</button>
                     <button id="clearData" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Bersihkan Form</button>
                     <button id="deleteData" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Hapus Data</button>
                 </div>
             </div>
         </div>
     </div>
+    <div class="card" id="hasilAhp">
+        <div class="card-header">
+            <h3 class="m-0 font-weight-bold"><i class="fa-solid fa-book pr-2"></i> Hasil Perhitungan AHP</h3>
+        </div>
+        <div class="card-body">
+            <h5>Ranking Kandidat</h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Nama</th>
+                        <th>Posisi</th>
+                        <th>Skor Akhir</th>
+                    </tr>
+                </thead>
+                <tbody id="resultData"></tbody>
+            </table>
+            <div class="mt-3">
+             <button id="saveArchive" class="btn btn-outline-success"><i class="fa fa-save"></i> Simpan Sebagai Arip</button>
+            </div>
+        </div>
+    </div>
 @endsection
-
 @section('scripts')
+<script>
+$(document).ready(function () {
+     $.ajax({
+        url: "v1/ahp",
+        method: "GET",
+        dataType: "json",
+        success: function (response) {
+            if (response.code === 200 && response.data.status === "success") {
+                let resultData = response.data.result_data;
+
+                // Check if result_data is empty
+                if (resultData.length === 0) {
+                    // If empty, hide the card
+                    $("#hasilAhp").hide();
+                } else {
+                    // If data is available, populate the table
+                    let resultTable = "";
+                    resultData.forEach(item => {
+                        resultTable += `<tr>
+                            <td>${item.rank}</td>
+                            <td>${item.applicant_name}</td>
+                            <td>${item.applicant_position}</td>
+                            <td>${item.final_score}</td>
+                        </tr>`;
+                    });
+                    $("#resultData").html(resultTable);
+                }
+            } else {
+                console.error("Gagal mengambil data:", response.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error fetching data:", error);
+        }
+    });
+    function successAlert(message) {
+        Swal.fire({
+            title: 'Berhasil!',
+            text: message,
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1000,
+        })
+    }
+
+    function errorAlert() {
+        Swal.fire({
+            title: 'Error',
+            text: 'Terjadi kesalahan!',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 1000,
+        });
+    }
+
+    function reloadBrowsers() {
+        setTimeout(function() {
+            location.reload();
+        }, 1500);
+    }
+
+
+    function confirmAlert(message, callback) {
+        Swal.fire({
+            title: '<span style="font-size: 22px"> Konfirmasi!</span>',
+            html: message,
+            showCancelButton: true,
+            showConfirmButton: true,
+            cancelButtonText: 'Tidak',
+            confirmButtonText: 'Ya',
+            reverseButtons: true,
+            confirmButtonColor: '#48ABF7',
+            cancelButtonColor: '#EFEFEF',
+            customClass: {
+                cancelButton: 'text-dark'
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                callback();
+            }
+        });
+    }
+
+     $(document).on("click", "#saveArchive", function (e) {
+        e.preventDefault();
+
+        function deleteData() {
+            $.ajax({
+                type: "DELETE",
+                url: "/v1/ahp/delete",
+                data: { _token: "{{ csrf_token() }}" },
+                success: function (response) {
+                    console.log(response);
+
+                    if (response.code == 200) {
+                        successAlert();
+                        reloadBrowsers();
+                        $("#hasilAhp").hide();
+                    } else {
+                        errorAlert();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                    errorAlert();
+                }
+            });
+        }
+
+        confirmAlert("Apakah Anda yakin ?", deleteData);
+    });
+});
+
+</script>
 <script>
     $(document).ready(function() {
         fetchData();
@@ -57,10 +193,10 @@
 
                                     if (scoresResponse.data.length > 0) {
                                         $("#saveData, #clearData").hide();
-                                        $("#deleteData").show();
+                                        $("#deleteData, #sendData").show();
                                     } else {
                                         $("#saveData, #clearData").show();
-                                        $("#deleteData").hide(); 
+                                        $("#deleteData, #sendData").hide();
                                     }
                                 },
                                 error: function(error) {
@@ -273,6 +409,31 @@
             }
 
             confirmAlert("Apakah Anda yakin ingin menghapus semua data?", deleteData);
+        });
+        $(document).on("click", "#sendData", function (e) {
+            e.preventDefault();
+
+            function resultAhp() {
+                $.ajax({
+                    type: "POST",
+                    url: "/v1/ahp/create",
+                    data: { _token: "{{ csrf_token() }}" },
+                    success: function (response) {
+                        if (response.code == 200) {
+                            successAlert();
+                            reloadBrowsers();
+                        } else {
+                            errorAlert();
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                        errorAlert();
+                    }
+                });
+            }
+
+            confirmAlert("Apakah semua nilai sudah benar?", resultAhp);
         });
     });
 </script>

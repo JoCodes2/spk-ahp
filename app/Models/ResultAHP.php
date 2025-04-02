@@ -10,9 +10,5 @@ class ResultAHP extends Model
 {
     use HasFactory, HasUuids;
     protected $table = 'ahp_result';
-    protected $fillable = ['id', 'applicant_id', 'final_score', 'rank', 'created_at', 'updated_at'];
-    public function applicant()
-    {
-        return $this->belongsTo(Applicant::class);
-    }
+    protected $fillable = ['id', 'applicant_name', 'applicant_position', 'final_score', 'rank', 'created_at', 'updated_at'];
 }

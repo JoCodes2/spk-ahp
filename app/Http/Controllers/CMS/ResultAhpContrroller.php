@@ -20,4 +20,8 @@ class ResultAhpContrroller
     {
         return $this->resultAhp->createData($request);
     }
+    public function arsipData()
+    {
+        return $this->resultAhp->arsipData();
+    }
 }

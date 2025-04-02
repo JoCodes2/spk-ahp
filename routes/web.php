@@ -21,6 +21,9 @@ Route::get('/kandidat', function () {
 Route::get('/applicant-scores', function () {
     return view('Admin.applicantSocres');
 });
+Route::get('/arsip-ahp', function () {
+    return view('Admin.arsip-ahp');
+});
 
 // route api
 Route::prefix('v1')->group(function () {
@@ -64,6 +67,6 @@ Route::prefix('v1')->group(function () {
     Route::prefix('ahp')->controller(ResultAhpContrroller::class)->group(function () {
         Route::get('/', 'getAllData');
         Route::post('/create', 'createData');
-        Route::delete('/delete', 'deleteAll');
+        Route::delete('/delete', 'arsipData');
     });
 });

@@ -8,4 +8,5 @@ interface ResultAhpIterfaces
 {
     public function getAllData();
     public function createData(Request $request);
+    public function arsipData();
 }
