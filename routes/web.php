@@ -7,7 +7,6 @@ use App\Http\Controllers\CMS\CriteriaValuesController;
 use App\Http\Controllers\CMS\PositionController;
 use App\Http\Controllers\CMS\ResultAhpContrroller;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Requests\CriteriaValuesRequest;
 use Illuminate\Support\Facades\Route;
 
 
