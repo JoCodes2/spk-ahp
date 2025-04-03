@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthRequest;
 use App\Repositories\AuthRepositories;
 
-class AuthController extends Controller
+class AuthController
 {
 
     protected $authRepo;
