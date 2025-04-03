@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Http\Requests\AuthRequest;
-use App\Interfaces\AuthInterfaces;
+use App\Interface\AuthInterfaces;
 use App\Models\User;
 use App\Traits\HttpResponseTraits;
 use Illuminate\Http\Request;

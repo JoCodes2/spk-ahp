@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interfaces;
+namespace App\Interface;
 
 use App\Http\Requests\AuthRequest;
 use Illuminate\Http\Request;
