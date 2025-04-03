@@ -46,6 +46,12 @@
                         <div data-i18n="Analytics">Nilai Kandidat</div>
                     </a>
                 </li>
+                 <li class="menu-item {{ request()->is('arsip-ahp') ? 'active' : '' }}">
+                    <a href="/arsip-ahp" class="menu-link">
+                        <i class="menu-icon fa-solid fa-book "></i>
+                        <div data-i18n="Analytics">Arsip Data</div>
+                    </a>
+                </li>
 
 
             </ul>

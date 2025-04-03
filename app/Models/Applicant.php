@@ -13,7 +13,7 @@ class Applicant extends Model
     protected $fillable = ['id', 'position_id', 'name', 'code', 'created_at', 'updated_at'];
     public function position()
     {
-        return $this->belongsTo(Position::class);
+        return $this->belongsTo(Position::class, 'position_id');
     }
     public function scores()
     {

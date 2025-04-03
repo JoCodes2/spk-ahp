@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('ahp_result', function (Blueprint $table) {
             $table->uuid('id');
-            $table->foreignUuid('applicant_id')->constrained('applicants')->cascadeOnDelete();
+            $table->string('applicant_name');
+            $table->string('applicant_position');
             $table->decimal('final_score', 8, 4);
             $table->integer('rank');
             $table->timestamps();
