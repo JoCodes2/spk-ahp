@@ -22,6 +22,10 @@ Route::get('/applicant-scores', function () {
     return view('Admin.applicantSocres');
 });
 
+Route::get('/login', function () {
+    return view('Auth.Login');
+});
+
 // route api
 Route::prefix('v1')->group(function () {
     // Routes criteria
